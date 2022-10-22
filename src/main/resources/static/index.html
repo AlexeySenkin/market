@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html ng-app="market">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+
+<div class="container" ng-controller="indexController">
+    <p></p>
+    <h1>Market</h1>
+    <p></p>
+    <h3>Список товаров</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in products">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-click="showProductInfo(p.id)">Info</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <h3>Добавить продукт</h3>
+    <p></p>
+    <form class="row g-3" ng-submit="createNewProduct()">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">
+        </div>
+        <div class="col-auto">
+            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Создать</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

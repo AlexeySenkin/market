@@ -1,4 +1,62 @@
-angular.module('market', []).controller('indexController', function ($scope, $http) {
+angular.module('market', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
+
+    if ($localStorage.marketUser) {
+        try {
+            let jwt = $localStorage.marketUser.token;
+            let payload = JSON.parse(atob(jwt.split('.')[1]));
+            let currentTime = parseInt(new Date().getTime() / 1000);
+            if (currentTime > payload.exp) {
+                console.log("Token is expired!!!");
+                alert("Token is expired!!!");
+                delete $localStorage.marketUser;
+                $http.defaults.headers.common.Authorization = '';
+            }
+        } catch (e) {
+        }
+
+        if ($localStorage.marketUser) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.marketUser.token;
+        }
+    }
+
+    $scope.checkUser = function() {
+        $http.get('http://localhost:8189/market/auth_check')
+            .then(function successCallback(response) {
+                alert(response.data.value)
+            });
+
+    }
+
+    $scope.tryToAuth = function () {
+        $http.post('http://localhost:8189/market/auth', $scope.user)
+            .then(function successCallback(response) {
+                if (response.data.token) {
+
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $localStorage.marketUser = {username: $scope.user.username, token: response.data.token};
+
+                    $scope.user.username = null;
+                    $scope.user.password = null;
+                }
+            }, function errorCallback(response) {
+            });
+    };
+
+    $scope.tryToLogout = function () {
+        $scope.clearUser();
+        $scope.user = null;
+    };
+
+    $scope.clearUser = function () {
+        delete $localStorage.marketUser;
+        $http.defaults.headers.common.Authorization = '';
+    };
+
+    $scope.isUserLoggedIn = function () {
+        return !!$localStorage.marketUser;
+    };
+
+
     $scope.loadProducts = function () {
         $http.get('http://localhost:8189/market/api/v1/products')
             .then(function (response) {

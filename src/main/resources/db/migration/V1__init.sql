@@ -60,3 +60,32 @@ values ('Alex', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 
 insert into users_roles (user_id, role_id)
 values (1, 1),
        (2, 2);
+
+create table orders
+(
+    id              bigserial primary key,
+    user_id         bigint references users (id),
+    total_price     int,
+    created_at      timestamp default current_timestamp,
+    updated_at      timestamp default current_timestamp
+);
+
+create table orders_items
+(
+    id                      bigserial primary key,
+    order_id                bigint references users (id),
+    product_id              bigint references products (id),
+    price_per_product       int,
+    quantity                int,
+    price                   int,
+    created_at              timestamp default current_timestamp,
+    updated_at              timestamp default current_timestamp
+);
+
+insert into orders (user_id, total_price)
+values (1, 32.0),
+       (2, 240.0);
+
+insert into orders_items (order_id, product_id,  price_per_product, quantity, price)
+values (1, 1, 32.0, 1, 32.0),
+       (2, 2, 120.0, 2, 240.0);

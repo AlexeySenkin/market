@@ -11,8 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.senkin.spring.market.dto.JwtRequest;
 import ru.senkin.spring.market.dto.JwtResponse;
+import ru.senkin.spring.market.dto.StringResponse;
 import ru.senkin.spring.market.services.UserService;
 import ru.senkin.spring.market.utils.JwtTokenUtil;
+
+import java.security.Principal;
 
 
 @RestController
@@ -33,6 +36,11 @@ public class AuthController {
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @GetMapping("/auth_check")
+    public StringResponse authCheck(Principal principal) {
+        return new StringResponse(principal.getName());
     }
 
     @GetMapping("/secured")

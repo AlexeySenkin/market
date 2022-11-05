@@ -9,14 +9,51 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
 
 <div class="container" ng-controller="indexController">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">СуперМаркет</a>
+                </li>
+
+                <li class="nav-item" ng-show="!isUserLoggedIn()">
+                    <form class="align-middle" ng-submit="tryToAuth()">
+                        <div class="input-group input-group-sm" style="padding: 4px;">
+
+                            <input id="navLoginField" class="form-control" ng-model="user.username" type="text"
+                                   aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">
+
+                            <input id="navPasswordField" class="form-control" ng-model="user.password" type="password"
+                                   aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">
+
+
+                            <button id="navLoginSubmit" class="btn btn-outline-warning btn-sm"
+                                    style="margin-left: 10px;" type="submit">Войти
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item" ng-show="isUserLoggedIn()" style="padding: 4px;">
+                    <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()">Выйти</button>
+                </li>
+                <li class="nav-item" style="padding: 4px;">
+                    <button class="btn btn-outline-warning btn-sm" ng-click="checkUser()">Проверить пользователя</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
     <p></p>
-    <h1>SuperMarket</h1>
+    <h1>СуперМаркет</h1>
     <p></p>
     <h3>Список товаров</h3>
     <p></p>

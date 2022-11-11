@@ -8,6 +8,7 @@ import ru.senkin.spring.market.entities.*;
 import ru.senkin.spring.market.repositories.OrderRepositories;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +34,7 @@ public class OrderService {
     }
 
 
-    public List<Order> findByUser(User user) {
-        //return orderRepositories.findByUser(user);
-        return orderRepositories.findAll();
+    public Optional<Order> findByUser(User user) {
+        return orderRepositories.findByUser(user);
     }
 }

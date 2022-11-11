@@ -13,6 +13,7 @@ import ru.senkin.spring.market.services.OrderService;
 import ru.senkin.spring.market.services.UserService;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,9 @@ public class OrderController {
     @GetMapping
     public List<OrderDto> getOrders(Principal principal) {
         User user = userService.findByUsername(principal.getName()).orElseThrow(()-> new RuntimeException());
-        return orderService.findByUser(user).stream().map(orderConvertor::entityToDto).collect(Collectors.toList());
+        List<OrderDto> orderDtos;
+        orderDtos = orderService.findByUser(user).stream().map(orderConvertor::entityToDto).collect(Collectors.toList());
+        return orderDtos;
     }
 
 

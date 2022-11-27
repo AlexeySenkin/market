@@ -1,4 +1,4 @@
-package convertors;
+package ru.senkin.market.carts.convertors;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

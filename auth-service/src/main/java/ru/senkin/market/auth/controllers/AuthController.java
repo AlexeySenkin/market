@@ -1,4 +1,4 @@
-package ru.senkin.market.core.controllers;
+package ru.senkin.market.auth.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,14 +8,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import ru.senkin.marker.api.dto.AppError;
 import ru.senkin.marker.api.dto.JwtRequest;
 import ru.senkin.marker.api.dto.JwtResponse;
-import ru.senkin.marker.api.dto.StringResponse;
-import ru.senkin.market.core.services.UserService;
-import ru.senkin.market.core.utils.JwtTokenUtil;
-
-import java.security.Principal;
-
+import ru.senkin.market.auth.services.UserService;
+import ru.senkin.market.auth.utils.JwtTokenUtil;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,22 +26,10 @@ public class AuthController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-            //return new ResponseEntity<>(new AppError("CHECK_TOKEN_ERROR", "Некорректный логин или пароль"), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Некорректный логин или пароль"), HttpStatus.UNAUTHORIZED);
         }
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
-
-    @GetMapping("/auth_check")
-    public StringResponse authCheck(Principal principal) {
-        return new StringResponse(principal.getName());
-    }
-
-    @GetMapping("/secured")
-    public String helloSecurity() {
-        return  "HELLO";
-    }
-
 }

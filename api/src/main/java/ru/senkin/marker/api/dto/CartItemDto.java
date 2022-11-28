@@ -1,6 +1,8 @@
 package ru.senkin.marker.api.dto;
 
 
+import java.math.BigDecimal;
+
 public class CartItemDto {
     private Long productId;
     private String productTitle;
@@ -45,6 +47,17 @@ public class CartItemDto {
     }
 
     public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public CartItemDto() {
+    }
+
+    public CartItemDto(Long productId, String productTitle, int quantity, int pricePerProduct, int price) {
+        this.productId = productId;
+        this.productTitle = productTitle;
+        this.quantity = quantity;
+        this.pricePerProduct = pricePerProduct;
         this.price = price;
     }
 }

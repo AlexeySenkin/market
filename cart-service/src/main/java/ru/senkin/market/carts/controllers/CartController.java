@@ -1,18 +1,15 @@
 package ru.senkin.market.carts.controllers;
 
 
+import org.springframework.web.bind.annotation.*;
 import ru.senkin.market.carts.convertors.CartConvertor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.senkin.marker.api.dto.CartDto;
 import ru.senkin.market.carts.services.CartService;
 
 
 @RestController
-@RequestMapping("/api/v1/cart")
+@RequestMapping("api/v1/cart")
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
@@ -29,7 +26,7 @@ public class CartController {
         cartService.delete(id);
     }
 
-    @GetMapping("/delete/all")
+    @GetMapping("/clear")
     public void deleteAllProductFromCart() {
         cartService.deleteAll();
     }

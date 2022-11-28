@@ -1,4 +1,4 @@
-package ru.senkin.market.core.entities;
+package ru.senkin.market.auth.entities;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

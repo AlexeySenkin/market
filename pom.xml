@@ -7,7 +7,10 @@
 		<module>core-service</module>
 		<module>cart-service</module>
 		<module>api</module>
-	</modules>
+        <module>front-service</module>
+		<module>gateway-service</module>
+        <module>auth-service</module>
+    </modules>
 
 	<groupId>ru.senkin.spring</groupId>
 	<artifactId>market</artifactId>

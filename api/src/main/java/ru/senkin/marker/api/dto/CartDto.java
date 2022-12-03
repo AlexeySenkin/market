@@ -1,6 +1,7 @@
 package ru.senkin.marker.api.dto;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -23,5 +24,13 @@ public class CartDto {
 
     public void setItems(List<CartItemDto> items) {
         this.items = items;
+    }
+
+    public CartDto() {
+    }
+
+    public CartDto(List<CartItemDto> items, int totalPrice) {
+        this.items = items;
+        this.totalPrice = totalPrice;
     }
 }

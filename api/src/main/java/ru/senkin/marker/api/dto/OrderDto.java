@@ -30,4 +30,13 @@ public class OrderDto {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public OrderDto() {
+    }
+
+    public OrderDto(Long orderId, List<OrderItemDto> items, int totalPrice) {
+        this.orderId = orderId;
+        this.items = items;
+        this.totalPrice = totalPrice;
+    }
 }

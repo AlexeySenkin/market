@@ -1,9 +1,9 @@
-package ru.senkin.market.core.services;
+package ru.senkin.market.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.senkin.market.core.entities.Role;
-import ru.senkin.market.core.repositories.RoleRepository;
+import ru.senkin.market.auth.entities.Role;
+import ru.senkin.market.auth.repositories.RoleRepository;
 
 
 @Service

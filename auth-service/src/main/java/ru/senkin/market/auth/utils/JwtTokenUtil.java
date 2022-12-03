@@ -1,4 +1,4 @@
-package ru.senkin.market.core.utils;
+package ru.senkin.market.auth.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

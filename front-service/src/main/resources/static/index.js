@@ -19,16 +19,16 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
         }
     }
 
-    $scope.checkUser = function() {
-        $http.get('http://localhost:8189/market/auth_check')
-            .then(function successCallback(response) {
-                alert(response.data.value)
-            });
-
-    }
+    // $scope.checkUser = function() {
+    //     $http.get('http://localhost:5555/core/auth_check')
+    //         .then(function successCallback(response) {
+    //             alert(response.data.value)
+    //         });
+    //
+    // }
 
     $scope.tryToAuth = function () {
-        $http.post('http://localhost:8189/market/auth', $scope.user)
+        $http.post('http://localhost:5555/auth/auth', $scope.user)
             .then(function successCallback(response) {
                 if (response.data.token) {
 
@@ -59,7 +59,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
 
 
     $scope.showProductInfo = function (id) {
-        $http.get('http://localhost:8189/market/api/v1/products/' + id)
+        $http.get('http://localhost:5555/core/api/v1/products/' + id)
             .then(function (response) {
                 //$scope.products = response.data;
                 //console.log(response);
@@ -68,7 +68,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     }
 
     $scope.deleteProduct = function (id) {
-        $http.delete('http://localhost:8189/market/api/v1/products/' + id)
+        $http.delete('http://localhost:5555/core/api/v1/products/' + id)
             .then(function (response) {
                 $scope.loadProducts();
             });
@@ -76,7 +76,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
 
     $scope.createNewProduct = function () {
         // console.log($scope.newProduct);
-        $http.post('http://localhost:8189/market/api/v1/products', $scope.newProduct)
+        $http.post('http://localhost:5555/core/api/v1/products', $scope.newProduct)
             .then(function (response) {
                 $scope.newProduct = null;
                 $scope.loadProducts();
@@ -84,42 +84,42 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     }
 
     $scope.loadCart = function () {
-        $http.get('http://localhost:8190/market-carts/api/v1/cart')
+        $http.get('http://localhost:5555/cart/api/v1/cart')
             .then(function (response) {
                 $scope.cart = response.data;
             });
     }
 
     $scope.loadOrders = function () {
-        $http.get('http://localhost:8189/market/api/v1/orders')
+        $http.get('http://localhost:5555/core/api/v1/orders')
             .then(function (response) {
                 $scope.order = response.data;
             });
     }
 
     $scope.addProductToCart = function (productId) {
-        $http.get('http://localhost:8190/market-carts/api/v1/cart/add/' + productId)
+        $http.get('http://localhost:5555/cart/api/v1/cart/add/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
     }
 
     $scope.deleteProductFromCart = function (productId) {
-        $http.get('http://localhost:8190/market-carts/api/v1/cart/delete/' + productId)
+        $http.get('http://localhost:5555/cart/api/v1/cart/delete/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
     }
 
     $scope.deleteAllProductFromCart = function () {
-        $http.get('http://localhost:8190/market-carts/api/v1/cart/delete/all')
+        $http.get('http://localhost:5555/cart/api/v1/cart/delete/all')
             .then(function (response) {
                 $scope.loadCart();
             });
     }
 
     $scope.loadProducts = function () {
-        $http.get('http://localhost:8189/market/api/v1/products')
+        $http.get('http://localhost:5555/core/api/v1/products')
             .then(function (response) {
                 $scope.products = response.data;
                 //console.log(response);
@@ -127,7 +127,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     };
 
     $scope.createOrder = function (orderId) {
-        $http.post('http://localhost:8189/market/api/v1/orders/' + orderId, $scope.newOrder)
+        $http.post('http://localhost:5555/core/api/v1/orders/' + orderId, $scope.newOrder)
             .then(function (response) {
                 $scope.newOrder = null;
                 $scope.loadProducts();

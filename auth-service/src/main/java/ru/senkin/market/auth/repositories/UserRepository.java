@@ -1,8 +1,8 @@
-package ru.senkin.market.core.repositories;
+package ru.senkin.market.auth.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.senkin.market.core.entities.User;
+import ru.senkin.market.auth.entities.User;
 
 import java.util.Optional;
 

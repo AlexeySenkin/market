@@ -20,9 +20,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+
+    @JoinColumn(name = "username")
+    private String username;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> items;

@@ -1,4 +1,4 @@
-package ru.senkin.market.core.services;
+package ru.senkin.market.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,10 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.senkin.market.core.entities.Role;
-import ru.senkin.market.core.entities.User;
-import ru.senkin.market.core.repositories.UserRepository;
-
+import ru.senkin.market.auth.entities.Role;
+import ru.senkin.market.auth.entities.User;
+import ru.senkin.market.auth.repositories.UserRepository;
 
 import java.util.Collection;
 import java.util.Optional;

@@ -1,10 +1,22 @@
 package ru.senkin.marker.api.dto;
 
 
+import java.math.BigDecimal;
+
 public class ProductDto {
     private Long id;
     private String title;
-    private int price;
+    private BigDecimal price;
+    private String categoryTitle;
+
+
+    public String getCategoryTitle() {
+        return categoryTitle;
+    }
+
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
+    }
 
     public Long getId() {
         return id;
@@ -14,7 +26,7 @@ public class ProductDto {
         return title;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -26,16 +38,17 @@ public class ProductDto {
         this.title = title;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String title, int price) {
+    public ProductDto(Long id, String title, BigDecimal price, String categoryTitle) {
         this.id = id;
         this.title = title;
         this.price = price;
+        this.categoryTitle = categoryTitle;
     }
 }

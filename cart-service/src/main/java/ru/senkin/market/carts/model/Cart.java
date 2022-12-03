@@ -5,6 +5,7 @@ import lombok.Data;
 import ru.senkin.marker.api.dto.ProductDto;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 @Data
 public class Cart {
-    private int totalPrice;
+    private BigDecimal totalPrice;
     private List<CartItem> items;
 
     public Cart() {
@@ -32,7 +33,7 @@ public class Cart {
             for (CartItem i : items) {
                 if (Objects.equals(i.getProductId(), product.getId())) {
                     i.setQuantity(i.getQuantity() + 1);
-                    i.setPrice(i.getPrice() + i.getPricePerProduct());
+                    i.setPrice(i.getPrice().add(i.getPricePerProduct()));
                     productFindInCart = true;
                     break;
                 }
@@ -55,9 +56,9 @@ public class Cart {
     }
 
     private void recalculate() {
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
         for (CartItem item : items) {
-            totalPrice += item.getPrice();
+            totalPrice = totalPrice.add(item.getPrice());
         }
 
     }

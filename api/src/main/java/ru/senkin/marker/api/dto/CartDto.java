@@ -7,14 +7,14 @@ import java.util.List;
 
 
 public class CartDto {
-    private int totalPrice;
+    private BigDecimal totalPrice;
     private List<CartItemDto> items;
 
-    public int getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -29,7 +29,7 @@ public class CartDto {
     public CartDto() {
     }
 
-    public CartDto(List<CartItemDto> items, int totalPrice) {
+    public CartDto(List<CartItemDto> items, BigDecimal totalPrice) {
         this.items = items;
         this.totalPrice = totalPrice;
     }

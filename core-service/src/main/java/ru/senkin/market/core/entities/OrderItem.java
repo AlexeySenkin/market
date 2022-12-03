@@ -6,12 +6,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders_items")
-@Data
 @NoArgsConstructor
+@Data
 public class OrderItem {
 
     @Id
@@ -28,13 +29,13 @@ public class OrderItem {
     private Product product;
 
     @Column(name = "price_per_product")
-    private int price_per_product;
+    private BigDecimal price_per_product;
 
     @Column(name = "quantity")
     private int quantity;
 
     @Column(name = "price")
-    private int price;
+    private BigDecimal price;
 
     @Column(name = "created_at")
     @CreationTimestamp

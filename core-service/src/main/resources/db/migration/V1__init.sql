@@ -20,10 +20,10 @@ values  ('Food'),
 
 insert into products (title, price, category_id)
 values
-    ('Bread', 32.00, 1),
-    ('Milk', 120.00, 1),
-    ('Butter', 320.00, 1),
-    ('Cheese', 500.00, 1);
+    ('Bread', 32.1, 1),
+    ('Milk', 120.1, 1),
+    ('Butter', 320.1, 1),
+    ('Cheese', 500.1, 1);
 
 create table orders
 (
@@ -47,9 +47,9 @@ create table orders_items
 );
 
 insert into orders (username, total_price)
-values ('Alex', 32.0),
-       ('Bob', 240.0);
+values ('Alex', 32.1),
+       ('Bob', 240.2);
 
 insert into orders_items (order_id, product_id,  price_per_product, quantity, price)
-values (1, 1, 32.0, 1, 32.0),
-       (2, 2, 120.0, 2, 240.0);
+values (1, 1, 32.1, 1, 32.1),
+       (2, 2, 120.1, 2, 240.2);

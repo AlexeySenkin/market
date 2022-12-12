@@ -19,10 +19,12 @@ public class OrderConvertor {
         orderDto.setOrderId(order.getId());
         orderDto.setTotalPrice(order.getTotalPrice());
 
+        // TODO: categoryTitle
+
         orderDto.setItems(order.getItems().stream().map(orderItem -> new OrderItemDto(
                 orderItem.getId(),
                 order.getId(),
-                new ProductDto(orderItem.getProduct().getId(), orderItem.getProduct().getTitle(), orderItem.getProduct().getPrice()),
+                new ProductDto(orderItem.getProduct().getId(), orderItem.getProduct().getTitle(), orderItem.getProduct().getPrice(), ""),
                 orderItem.getPrice_per_product(),
                 orderItem.getQuantity(),
                 orderItem.getPrice()))

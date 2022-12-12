@@ -35,7 +35,7 @@ public class ProductService {
         product.setPrice(productDto.getPrice());
         product.setTitle(productDto.getTitle());
 
-        String s = productDto.getCategoryTitle();
+        String s = String.format("%%%s%%",productDto.getCategoryTitle());
 
         Category category = categoryService.findByTitle(s).orElseThrow(() -> new ResourceNotFoundException("Category not found, title:" + s));
 

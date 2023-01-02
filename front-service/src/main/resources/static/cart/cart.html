@@ -1,0 +1,34 @@
+<div>
+    <p></p>
+    <h3>Корзина</h3>
+    <p></p>
+    <div ng-show="cart.items.length > 0">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <td>Название</td>
+                <td>Количество</td>
+                <td>Цена</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="ci in cart.items">
+                <td>{{ci.productTitle}}</td>
+                <td>{{ci.quantity}}</td>
+                <td>{{ci.pricePerProduct + ' x ' + ci.quantity + ' = ' + ci.price}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Итого:</td>
+                <td>{{cart.totalPrice}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <button class="btn btn-secondary" ng-click="guestCreateOrder()" ng-show="!isUserLoggedIn()">Оформить заказ</button>
+        <button class="btn btn-primary" ng-click="createOrder()" ng-show="isUserLoggedIn()">Оформить заказ</button>
+    </div>
+    <div ng-show="cart.items.length == 0">
+        <p>Ваша корзина пуста</p>
+    </div>
+</div>

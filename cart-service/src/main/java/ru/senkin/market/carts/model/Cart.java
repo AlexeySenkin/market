@@ -25,7 +25,16 @@ public class Cart {
     }
 
     public void add(ProductDto product) {
-        CartItem item = new CartItem(product.getId(), product.getTitle(), 1, product.getPrice(), product.getPrice());
+//        CartItem item = new CartItem(product.getId(), product.getTitle(), 1, product.getPrice(), product.getPrice());
+
+        CartItem item = CartItem.newBuilder()
+                .withProductId(product.getId())
+                .withProductTitle(product.getTitle())
+                .withQuantity(1)
+                .withPricePerProduct(product.getPrice())
+                .withPrice(product.getPrice())
+                .build();
+
         boolean productFindInCart = false;
         if (items.isEmpty()) {
             items.add(item);
